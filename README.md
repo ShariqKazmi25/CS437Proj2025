@@ -54,7 +54,7 @@ After training, you can run inference on a set of images using the following com
 
 Results
 
-The results of each model (YOLOv3, YOLOv8n, YOLOv8s with CLIP) on the Trash in Water Channels dataset can be found in the results/ folder. Detailed performance metrics and comparisons are included in the corresponding paper and evaluation section.
+The results of the final model on the Trash in Water Channels dataset can be found in the results/ folder. Detailed performance metrics and comparisons are included in the corresponding paper and evaluation section.
 
 Acknowledgments
 
