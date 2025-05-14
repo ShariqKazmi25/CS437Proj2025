@@ -42,7 +42,7 @@ Training the Model
 
 To train the model, use the following command:
 
-    python train.py --data "path_to_data.yaml" --batch-size 16 --epochs 20 --img-size 416 --lr 1e-4
+    python train.py --data "path_to_garbage.yaml" --batch-size 16 --epochs 20 --img-size 416 --lr 1e-4
 
     
 Running Inference
