@@ -42,16 +42,16 @@ Training the Model
 
 To train the model, use the following command:
 
-    python train.py --data data/garbage.yaml --epochs 20 --batch-size 8 --img-size 416
+    python train.py --data "path_to_data.yaml" --batch-size 16 --epochs 20 --img-size 416 --lr 1e-4
 
-This command will start training with the given data configuration file, set for 20 epochs, using a batch size of 8 and an image size of 416x416.
+    
 Running Inference
 
 After training, you can run inference on a set of images using the following command:
 
-    python inference.py --weights runs/train/garbage_v8s/weights/best.pt --img-size 416 --source data/images/val
+    python inference.py --model path_to_trained_model.pt --input path_to_input_image_or_directory --output path_to_save_inference_results
 
-This will run the trained model on the images in the data/images/val folder.
+
 Results
 
 The results of each model (YOLOv3, YOLOv8n, YOLOv8s with CLIP) on the Trash in Water Channels dataset can be found in the results/ folder. Detailed performance metrics and comparisons are included in the corresponding paper and evaluation section.
