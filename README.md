@@ -24,8 +24,9 @@ Installation and Setup
 To use this project, clone the repository and install the required dependencies.
 Clone the Repository
 
-git clone https://github.com/ShariqKazmi25/CS437Proj2025.git
-cd CS437Proj2025
+
+    git clone https://github.com/ShariqKazmi25/CS437Proj2025.git
+    cd CS437Proj2025
 
 Install Dependencies
 
