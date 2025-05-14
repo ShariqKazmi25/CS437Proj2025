@@ -1,0 +1,11 @@
+torch==2.5.1
+torchvision==0.14.0
+transformers==4.27.0
+matplotlib==3.7.1
+pandas==1.5.3
+tqdm==4.64.0
+opencv-python==4.6.0.66
+pycocotools==2.0.5
+ultralytics==8.3.124
+Pillow==9.5.0
+scikit-learn==1.0.2
