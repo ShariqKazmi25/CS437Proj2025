@@ -37,6 +37,15 @@ You can install the required Python dependencies by running:
 Data Setup
 
 You need to download and set up the "Trash in Water Channels" dataset. Make sure to place the dataset in the correct directory as specified in the code.
+The annotatipns can be accessed at Dr. Murtaza Taj's GitHub repo: 
+        
+    https://github.com/abdulwahabamin/keras-yolo3-attention
+
+Here are the drive links to the dataset images used in this project:
+     
+    Preliminary: https://drive.google.com/file/d/1Yp0If_pGQyOSVaOFUS5piLypDuLiO5tK/view
+    Object Detection: https://drive.google.com/file/d/1nQBjcg6-sU3yOxMzi0ybTwpQx4H5xuV0/view
+    Segmentation: https://drive.google.com/file/d/1sd7diZGvNW3-BO0LnYqmTdaCdZKgToJp/view
 Usage
 Training the Model
 
