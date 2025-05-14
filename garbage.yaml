@@ -1,0 +1,20 @@
+# data/garbage.yaml
+
+train: images/train
+val:   images/val
+
+
+nc: 12
+names:
+  0: plastic_bag
+  1: plastic_wrapper
+  2: plastic_bottle
+  3: plastic_cap
+  4: shoes
+  5: decor
+  6: cigarette
+  7: paper_wrapper
+  8: cardboard
+  9: tetrapak
+  10: cluster
+  11: other
