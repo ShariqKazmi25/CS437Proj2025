@@ -1,0 +1,12 @@
+# Ignore model weights
+*.pt
+
+# Ignore python bytecode
+__pycache__/
+*.pyc
+
+# Ignore virtual environment
+venv/
+
+# Ignore dataset if too large
+data/
