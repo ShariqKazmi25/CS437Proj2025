@@ -5,19 +5,19 @@ Trash Detection in Water Channels Using YOLOv8 and CLIP
 This repository contains the code and models for detecting trash floating on water channels, rivers, and urban drainage systems. The project leverages YOLOv8 and CLIP to detect various types of waste in urban waterways. The system integrates real-time object detection with multimodal transformer-based image-text alignment to enhance the detection of small, fragmented, or occluded debris.
 Project Overview
 
-    Objective: Detect trash in water channels to help with environmental monitoring and urban waterway cleanliness.
+Objective: Detect trash in water channels to help with environmental monitoring and urban waterway cleanliness.
 
-    Models Used: YOLOv8, CLIP-based Vision Transformer for rescoring.
+Models Used: YOLOv8, CLIP-based Vision Transformer for rescoring.
 
-    Dataset: The "Trash in Water Channels" dataset (created and annotated by Dr. Murtaza Taj, 2021), containing various types of trash, including plastic bags, bottles, and wrappers in urban waterways.
+Dataset: The "Trash in Water Channels" dataset (created and annotated by Dr. Murtaza Taj, 2021), containing various types of trash, including plastic bags, bottles, and wrappers in urban waterways.
 
 Features
 
-    Real-Time Detection: YOLOv8 provides fast and accurate detection of trash in water channels.
+Real-Time Detection: YOLOv8 provides fast and accurate detection of trash in water channels.
 
-    Multimodal Transformer Integration: Uses CLIP to refine and rescore detections, particularly for small and occluded objects.
+Multimodal Transformer Integration: Uses CLIP to refine and rescore detections, particularly for small and occluded objects.
 
-    Dataset: A comprehensive dataset of trash in water channels with object-level annotations, ideal for training and evaluating object detection models.
+Dataset: A comprehensive dataset of trash in water channels with object-level annotations, ideal for training and evaluating object detection models.
 
 Installation and Setup
 
@@ -30,8 +30,8 @@ cd CS437Proj2025
 Install Dependencies
 
 You can install the required Python dependencies by running:
-
-pip install -r requirements.txt
+   
+    pip install -r requirements.txt
 
 Data Setup
 
@@ -41,29 +41,24 @@ Training the Model
 
 To train the model, use the following command:
 
-python train.py --data data/garbage.yaml --epochs 20 --batch-size 8 --img-size 416
+    python train.py --data data/garbage.yaml --epochs 20 --batch-size 8 --img-size 416
 
 This command will start training with the given data configuration file, set for 20 epochs, using a batch size of 8 and an image size of 416x416.
 Running Inference
 
 After training, you can run inference on a set of images using the following command:
 
-python inference.py --weights runs/train/garbage_v8s/weights/best.pt --img-size 416 --source data/images/val
+    python inference.py --weights runs/train/garbage_v8s/weights/best.pt --img-size 416 --source data/images/val
 
 This will run the trained model on the images in the data/images/val folder.
 Results
 
 The results of each model (YOLOv3, YOLOv8n, YOLOv8s with CLIP) on the Trash in Water Channels dataset can be found in the results/ folder. Detailed performance metrics and comparisons are included in the corresponding paper and evaluation section.
-Contributing
 
-If you'd like to contribute to this project, feel free to fork the repository and submit a pull request with improvements or bug fixes.
-License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
 Acknowledgments
 
-    YOLOv8: Ultralytics' YOLOv8 for state-of-the-art object detection.
+YOLOv8: Ultralytics' YOLOv8 for state-of-the-art object detection.
 
-    CLIP: OpenAI's CLIP for multimodal learning and rescoring.
+CLIP: OpenAI's CLIP for multimodal learning and rescoring.
 
-    Dataset: "Trash in Water Channels" dataset introduced by Dr. Murtaza Taj.
+Dataset: "Trash in Water Channels" dataset introduced by Dr. Murtaza Taj.
