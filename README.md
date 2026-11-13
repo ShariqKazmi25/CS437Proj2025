@@ -1,74 +1,37 @@
-# CS437Proj2025
+# Autonomous Trash Skimmer Boat · Vision Pipeline
 
-Trash Detection in Water Channels Using YOLOv8 and CLIP
+An object-detection project for identifying floating debris in water-channel images. This repository contains the vision experiments, trained YOLOv8s checkpoints, and evaluation artifacts for the skimmer concept.
 
-This repository contains the code and models for detecting trash floating on water channels, rivers, and urban drainage systems. The project leverages YOLOv8 and CLIP to detect various types of waste in urban waterways. The system integrates real-time object detection with multimodal transformer-based image-text alignment to enhance the detection of small, fragmented, or occluded debris.
-Project Overview
+## Try the trained detector
 
-Objective: Detect trash in water channels to help with environmental monitoring and urban waterway cleanliness.
+In a Python environment with a compatible PyTorch build, install Ultralytics and run prediction on a local image or folder of images:
 
-Models Used: YOLOv8, CLIP-based Vision Transformer for rescoring.
+```bash
+python -m pip install ultralytics==8.3.124
+yolo detect predict model=best.pt source=path/to/images imgsz=320 device=cpu
+```
 
-Dataset: The "Trash in Water Channels" dataset (created and annotated by Dr. Murtaza Taj, 2021), containing various types of trash, including plastic bags, bottles, and wrappers in urban waterways.
+Ultralytics saves annotated predictions under `runs/detect/`. The repository includes `best.pt` and `last.pt` at the root, along with [sample validation predictions](results/val_batch0_pred.jpg).
 
-Features
+## Dataset and training
 
-Real-Time Detection: YOLOv8 provides fast and accurate detection of trash in water channels.
+The experiments use the **Trash in Water Channels** dataset. See the [dataset project and annotations](https://github.com/abdulwahabamin/keras-yolo3-attention) and the [object-detection image archive](https://drive.google.com/file/d/1nQBjcg6-sU3yOxMzi0ybTwpQx4H5xuV0/view). The [dataset YAML](garbage.yaml) defines 12 classes, including plastic bags, bottles, and wrappers.
 
-Multimodal Transformer Integration: Uses CLIP to refine and rescore detections, particularly for small and occluded objects.
+The [final notebook](Notebooks/26100101deliverable5.ipynb) shows how the annotations were converted to YOLO format and how the model was trained and evaluated. It uses Kaggle paths that need to be adjusted for a local run. Once images and labels are arranged under `images/train`, `images/val`, `labels/train`, and `labels/val`, point `garbage.yaml` at the dataset root and train with Ultralytics:
 
-Dataset: A comprehensive dataset of trash in water channels with object-level annotations, ideal for training and evaluating object detection models.
+```bash
+yolo detect train model=yolov8s.pt data=garbage.yaml epochs=20 imgsz=320 batch=4
+```
 
-Installation and Setup
+See the [recorded training configuration](results/args.yaml) for the full run settings. Earlier notebooks cover a Keras YOLOv3 experiment and an earlier YOLOv8 run. The standalone `train.py` and `inference.py` files are exploratory drafts with incomplete dependencies and model wiring. Use the notebook or Ultralytics commands above to follow the documented experiments.
 
-To use this project, clone the repository and install the required dependencies.
-Clone the Repository
+## Validation results
 
+The [YOLOv8s training log](results/results.csv) records these validation metrics:
 
-    git clone https://github.com/ShariqKazmi25/CS437Proj2025.git
-    cd CS437Proj2025
+| Epoch | Precision | Recall | mAP@50 | mAP@50–95 |
+| --- | ---: | ---: | ---: | ---: |
+| 1 | 76.1% | 24.8% | 25.2% | 14.7% |
+| 20 | 78.9% | 56.1% | 61.8% | 39.4% |
 
-Install Dependencies
-
-You can install the required Python dependencies by running:
-   
-    pip install -r requirements.txt
-
-Data Setup
-
-You need to download and set up the "Trash in Water Channels" dataset. Make sure to place the dataset in the correct directory as specified in the code.
-The annotatipns can be accessed at Dr. Murtaza Taj's GitHub repo: 
-        
-    https://github.com/abdulwahabamin/keras-yolo3-attention
-
-Here are the drive links to the dataset images used in this project:
-     
-    Preliminary: https://drive.google.com/file/d/1Yp0If_pGQyOSVaOFUS5piLypDuLiO5tK/view
-    Object Detection: https://drive.google.com/file/d/1nQBjcg6-sU3yOxMzi0ybTwpQx4H5xuV0/view
-    Segmentation: https://drive.google.com/file/d/1sd7diZGvNW3-BO0LnYqmTdaCdZKgToJp/view
-Usage
-Training the Model
-
-To train the model, use the following command:
-
-    python train.py --data "path_to_garbage.yaml" --batch-size 16 --epochs 20 --img-size 416 --lr 1e-4
-
-    
-Running Inference
-
-After training, you can run inference on a set of images using the following command:
-
-    python inference.py --model path_to_trained_model.pt --input path_to_input_image_or_directory --output path_to_save_inference_results
-
-
-Results
-
-The results of the final model on the Trash in Water Channels dataset can be found in the results/ folder. Detailed performance metrics and comparisons are included in the corresponding paper and evaluation section.
-
-Acknowledgments
-
-YOLOv8: Ultralytics' YOLOv8 for state-of-the-art object detection.
-
-CLIP: OpenAI's CLIP for multimodal learning and rescoring.
-
-Dataset: "Trash in Water Channels" dataset introduced by Dr. Murtaza Taj.
+The final notebook also tested CLIP ViT-B/32 as a post-processing step. It compared each detection crop with text prompts for the 12 classes, then combined the best similarity score with YOLO confidence. In that notebook's COCO bounding-box evaluation, mAP@50–95 was **31.9% for YOLOv8s** and **3.0% with CLIP rescoring**. The notebook applies a fused-score cutoff to the CLIP predictions, so these figures describe the tested configuration. The training-log metrics above come from Ultralytics validation.
